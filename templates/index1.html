@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aptitude Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #8ec3eb;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #E0FFFF;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        h1 {
+            text-align: center;
+        }
+        #question-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        #question {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        #timer {
+            font-size: 1.2em;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+        #options-container {
+            display: flex;
+            flex-direction: column;
+        }
+        .option {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            cursor: pointer;
+        }
+        .option:hover {
+            background-color: #e0e0e0;
+        }
+        #result-container {
+            text-align: center;
+            display: none;
+        }
+        #score {
+            text-align: center;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Aptitude Quiz</h1>
+        <div id="question-container">
+            <div id="question">
+                <div id="question-text">Loading question...</div>                
+            </div>
+            <div id="timer">Time Left: <span id="time-left">600</span> seconds</div>
+        </div>
+        
+        <div id="options-container">
+            <button class="option" onclick="selectOption(this)">Option 1</button>
+            <button class="option" onclick="selectOption(this)">Option 2</button>
+            <button class="option" onclick="selectOption(this)">Option 3</button>
+            <button class="option" onclick="selectOption(this)">Option 4</button>
+        </div>
+        <div id="result-container">
+            <p id="result"></p>
+            <button onclick="restartQuiz()">Restart Quiz</button>
+        </div>        
+        <div id="score">Score: <span id="current-score">0</span></div>
+    </div>
+    <script>
+        const questions = [
+    {
+        "category": "Quantitative Aptitude",
+        "question": "What is the sum of the first 10 positive integers?",
+        "options": ["45", "50", "55", "60"],
+        "correctOption": "55"
+    },
+    {
+        "category": "Quantitative Aptitude",
+        "question": "What is 15% of 200?",
+        "options": ["25", "30", "35", "40"],
+        "correctOption": "30"
+    },
+    {
+        "category": "Quantitative Aptitude",
+        "question": "What is the value of (3^2 + 4^2)?",
+        "options": ["25", "26", "27", "29"],
+        "correctOption": "25"
+    },
+    {
+        "category": "Quantitative Aptitude",
+        "question": "A car travels 60 km in 1 hour. How much distance will it cover in 3.5 hours?",
+        "options": ["180 km", "210 km", "220 km", "200 km"],
+        "correctOption": "210 km"
+    },
+    {
+        "category": "Quantitative Aptitude",
+        "question": "If the cost price of 15 items is equal to the selling price of 12 items, what is the profit percentage?",
+        "options": ["25%", "20%", "30%", "15%"],
+        "correctOption": "25%"
+    },
+    {
+        "category": "Logical Reasoning",
+        "question": "If all roses are flowers and some flowers fade quickly, which of the following is true?",
+        "options": ["All roses fade quickly.", "Some roses fade quickly.", "Some flowers are roses.", "None of the above."],
+        "correctOption": "Some flowers are roses."
+    },
+    {
+        "category": "Logical Reasoning",
+        "question": "Find the next number in the sequence: 2, 6, 12, 20, ...",
+        "options": ["30", "28", "40", "22"],
+        "correctOption": "30"
+    },
+    {
+        "category": "Logical Reasoning",
+        "question": "Which of the following is different from the others?",
+        "options": ["Apple", "Banana", "Cherry", "Carrot"],
+        "correctOption": "Carrot"
+    },
+    {
+        "category": "Logical Reasoning",
+        "question": "John is taller than Mike. Mike is taller than Sarah. Who is the shortest?",
+        "options": ["John", "Mike", "Sarah", "Cannot be determined"],
+        "correctOption": "Sarah"
+    },
+    {
+        "category": "Logical Reasoning",
+        "question": "If a is less than b and b is less than c, then which of the following is true?",
+        "options": ["a is greater than c", "a is less than c", "a is equal to c", "None of the above"],
+        "correctOption": "a is less than c"
+    },
+    {
+        "category": "Verbal Ability",
+        "question": "Choose the word which is most similar in meaning to the word 'CORPULENT'.",
+        "options": ["Lean", "Gaunt", "Emaciated", "Obese"],
+        "correctOption": "Obese"
+    },
+    {
+        "category": "Verbal Ability",
+        "question": "Choose the correct synonym for the word 'FASTIDIOUS'.",
+        "options": ["Indifferent", "Meticulous", "Careless", "Casual"],
+        "correctOption": "Meticulous"
+    },
+    {
+        "category": "Verbal Ability",
+        "question": "Choose the word which is most opposite in meaning to the word 'BENIGN'.",
+        "options": ["Kind", "Gentle", "Hostile", "Friendly"],
+        "correctOption": "Hostile"
+    },
+    {
+        "category": "Verbal Ability",
+        "question": "Choose the correct antonym for the word 'EXONERATE'.",
+        "options": ["Accuse", "Absolve", "Pardon", "Forgive"],
+        "correctOption": "Accuse"
+    },
+    {
+        "category": "Verbal Ability",
+        "question": "Choose the word which is most similar in meaning to the word 'TACITURN'.",
+        "options": ["Talkative", "Silent", "Expressive", "Gregarious"],
+        "correctOption": "Silent"
+    },
+    {
+        "category": "Quantitative Aptitude",
+        "question": "A man buys an article for $240 and sells it for $300. What is his profit percentage?",
+        "options": ["25%", "20%", "15%", "30%"],
+        "correctOption": "25%"
+    },
+    {
+        "category": "Quantitative Aptitude",
+        "question": "What is the next number in the sequence: 1, 4, 9, 16, ...?",
+        "options": ["20", "25", "36", "30"],
+        "correctOption": "25"
+    },
+    {
+        "category": "Quantitative Aptitude",
+        "question": "What is the average of first five multiples of 3?",
+        "options": ["9", "12", "15", "18"],
+        "correctOption": "9"
+    },
+    {
+        "category": "Quantitative Aptitude",
+        "question": "What is the area of a rectangle with length 5 cm and width 3 cm?",
+        "options": ["15 cm²", "10 cm²", "20 cm²", "25 cm²"],
+        "correctOption": "15 cm²"
+    },
+    {
+        "category": "Quantitative Aptitude",
+        "question": "What is the probability of getting a head when a coin is tossed?",
+        "options": ["1/2", "1/3", "1/4", "2/3"],
+        "correctOption": "1/2"
+    },
+    {
+        "category": "Logical Reasoning",
+        "question": "Find the odd one out: Dog, Cat, Cow, Tree.",
+        "options": ["Dog", "Cat", "Cow", "Tree"],
+        "correctOption": "Tree"
+    },
+    {
+        "category": "Logical Reasoning",
+        "question": "If all pens are books and all books are papers, which of the following is true?",
+        "options": ["All pens are papers.", "All papers are pens.", "Some pens are not papers.", "None of the above."],
+        "correctOption": "All pens are papers."
+    },
+    {
+        "category": "Logical Reasoning",
+        "question": "Which number should come next in the pattern: 37, 34, 31, 28, ...?",
+        "options": ["25", "26", "23", "24"],
+        "correctOption": "25"
+    },
+    {
+        "category": "Logical Reasoning",
+        "question": "If A is the brother of B and B is the sister of C, how is A related to C?",
+        "options": ["Brother", "Sister", "Cousin", "Cannot be determined"],
+        "correctOption": "Brother"
+    },
+    {
+        "category": "Logical Reasoning",
+        "question": "Which of the following is a fruit: Carrot, Potato, Tomato, Lettuce?",
+        "options": ["Carrot", "Potato", "Tomato", "Lettuce"],
+        "correctOption": "Tomato"
+    },
+    {
+        "category": "Verbal Ability",
+        "question": "Choose the correct synonym for the word 'ABATE'.",
+        "options": ["Increase", "Diminish", "Maintain", "Aggravate"],
+        "correctOption": "Diminish"
+    },
+    {
+        "category": "Verbal Ability",
+        "question": "Choose the word which is most opposite in meaning to the word 'GENEROSITY'.",
+        "options": ["Kindness", "Meanness", "Altruism", "Magnanimity"],
+        "correctOption": "Meanness"
+    },
+    {
+        "category": "Verbal Ability",
+        "question": "Choose the word which is most similar in meaning to the word 'LOQUACIOUS'.",
+        "options": ["Silent", "Reserved", "Talkative", "Shy"],
+        "correctOption": "Talkative"
+    },
+    {
+        "category": "Verbal Ability",
+        "question": "Choose the correct antonym for the word 'PROSCRIBE'.",
+        "options": ["Ban", "Allow", "Forbid", "Exclude"],
+        "correctOption": "Allow"
+    },
+    {
+        "category": "Verbal Ability",
+        "question": "Choose the word which is most similar in meaning to the word 'IMPECUNIOUS'.",
+        "options": ["Wealthy", "Poor", "Generous", "Honest"],
+        "correctOption": "Poor"
+    },
+    {
+        "category": "Quantitative Aptitude",
+        "question": "If the circumference of a circle is 22 cm, what is its radius? (Use π = 22/7)",
+        "options": ["3.5 cm", "5 cm", "7 cm", "11 cm"],
+        "correctOption": "3.5 cm"
+    },
+    {
+        "category": "Quantitative Aptitude",
+        "question": "What is the perimeter of a square with each side measuring 8 cm?",
+        "options": ["24 cm", "32 cm", "40 cm", "64 cm"],
+        "correctOption": "32 cm"
+    },
+    {
+        "category": "Quantitative Aptitude",
+        "question": "If x + 5 = 12, what is the value of x?",
+        "options": ["2", "5", "7", "12"],
+        "correctOption": "7"
+    },
+    {
+        "category": "Quantitative Aptitude",
+        "question": "What is the square root of 144?",
+        "options": ["12", "14", "16", "18"],
+        "correctOption": "12"
+    },
+    {
+        "category": "Quantitative Aptitude",
+        "question": "If a box contains 12 chocolates and you take away 3, how many chocolates do you have?",
+        "options": ["3", "9", "12", "None of the above"],
+        "correctOption": "None of the above"
+    }
+];
+
+let currentQuestionIndex = 0;
+let score = 0;
+let timeLeft = 600; // 10 minutes
+let timer;
+let selectedQuestions = [];
+
+function startQuiz() {
+    selectedQuestions = questions.sort(() => 0.5 - Math.random()).slice(0, 10);
+    currentQuestionIndex = 0;
+    score = 0;
+    timeLeft = 600;
+    document.getElementById('result-container').style.display = 'none';
+    document.getElementById('question-container').style.display = 'block';
+    document.getElementById('current-score').innerText = score; // Reset score display
+    showQuestion();
+    startTimer();
+}
+
+function showQuestion() {
+    if (currentQuestionIndex < selectedQuestions.length) {
+        const questionData = selectedQuestions[currentQuestionIndex];
+        document.getElementById('question').innerText = questionData.question;
+        const options = document.querySelectorAll('.option');
+        options.forEach((option, index) => {
+            option.innerText = questionData.options[index];
+            option.style.backgroundColor = '';
+            option.disabled = false;
+        });
+    } else {
+        endQuiz();
+    }
+}
+
+function selectOption(option) {
+    const questionData = selectedQuestions[currentQuestionIndex];
+    const correct = option.innerText === questionData.correctOption;
+    option.style.backgroundColor = correct ? 'green' : 'red';
+    if (correct) {
+        score++;
+        document.getElementById('current-score').innerText = score; // Update score display
+    }
+    setTimeout(() => {
+        currentQuestionIndex++;
+        if (currentQuestionIndex >= selectedQuestions.length) {
+            endQuiz();
+        } else {
+            showQuestion();
+        }
+    }, 1000); // Wait 1 second before showing the next question
+}
+
+function redirectToIndex(score, quizType) {
+    console.log(`Redirecting to http://127.0.0.1:5000/ with score: ${score} and quiz type: ${quizType}`);
+    window.location.href = `http://127.0.0.1:5000/?score=${score*10}&quizType=${quizType}`;
+}
+
+
+
+    // Function to handle quiz completion
+    function endQuiz() {
+        clearInterval(timer);
+        const result = `You scored ${score} out of ${selectedQuestions.length}`;
+        // Redirect to index.html with the score parameter
+        redirectToIndex(score,'aptitude');
+    }
+
+function startTimer() {
+    document.getElementById('time-left').innerText = `${timeLeft}`;
+    timer = setInterval(() => {
+        timeLeft--;
+        document.getElementById('time-left').innerText = `${timeLeft}`;
+        if (timeLeft <= 0) {
+            endQuiz();
+        }
+    }, 1000);
+}
+
+function restartQuiz() {
+    clearInterval(timer);
+    startQuiz();
+}
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    startQuiz();
+});
+
+    </script>
+</body>
+</html>

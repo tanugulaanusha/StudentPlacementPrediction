@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programming Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #8ec3eb;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #E0FFFF;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        #question-container {
+            display: none;
+        }
+        #result-container {
+            text-align: center;
+            display: none;
+        }
+        #timer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 1.2em;
+}
+
+#timer span {
+    margin-left: 10px;
+}
+
+        pre {
+            white-space: pre-wrap;
+        }
+        .option {
+    display: block;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.option:hover {
+    background-color: #e0e0e0;
+}       #options-container {
+            display: flex;
+            flex-direction: column;
+        }
+        #score {
+            text-align: center;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Programming Quiz</h1>
+        <div id="question-container">
+            <div id="question-text">Loading question...</div>
+            <div id="timer">Time Remaining: <span id="time-left">600</span> seconds</div>
+            <div id="code-container"></div>
+            <div id="options-container"></div>
+            
+        </div>
+        <div id="result-container">
+            <p id="result"></p>
+            <button onclick="restartQuiz()">Restart Quiz</button>
+        </div>
+        <div id="score">Score: <span id="current-score">0</span></div>
+    </div>
+    <script>
+        const questions = [
+    {
+        "question": "What will be the output of the following code snippet?",
+        "code_snippet": "#include <stdio.h>\nvoid solve() {\n    bool ok = false;\n    printf(ok ? \"YES\" : \"NO\");\n}\nint main() {\n    solve();\n\treturn 0;\n}",
+        "options": ["YES", "NO"],
+        "correctOption": "NO"
+    },
+    {
+        "question": "What will be the output of the following code snippet?",
+        "code_snippet": "#include <stdio.h>\n#define VAL 3 * (2 + 6)\nvoid solve() {\n    int a = 10 + VAL;\n    printf(\"%d\", a);\n}\nint main() {\n\tsolve();\n\treturn 0;\n}",
+        "options": ["28", "34", "40", "Invalid macro definition"],
+        "correctOption": "34"
+    },
+    {
+        "question": "What will be the output of the following code snippet?",
+        "code_snippet": "#include <stdio.h>\nint main() {\n\tint a = 3, b = 5;\n\tint t = a;\n\ta = b;\n\tb = t;\n\tprintf(\"%d %d\", a, b);\n\treturn 0;\n}",
+        "options": ["3 5", "5 3", "2 4", "4 2"],
+        "correctOption": "5 3"
+    },
+    {
+        "question": "What will be the output of the following code snippet?",
+        "code_snippet": "#include <stdio.h>\nvoid solve() {\n    int ch = 2;\n    switch(ch) {\n        case 1: printf(\"1 \");\n        case 2: printf(\"2 \");\n        case 3: printf(\"3 \");\n        default: printf(\"None\");\n    }\n}\nint main() {\n    solve();\n\treturn 0;\n}",
+        "options": ["2None", "23", "2", "None"],
+        "correctOption": "23None"
+    },
+    {
+        "question": "What will be the value of x in the following code snippet?",
+        "code_snippet": "#include <stdio.h>\nvoid solve() {\n    int x = printf(\"Hello\");\n    printf(\" %d\", x);\n}\nint main() {\n\tsolve();\n\treturn 0;\n}",
+        "options": ["Hello 5", "5 Hello", "5", "Hello"],
+        "correctOption": "Hello 5"
+    },
+    {
+        "question": "Which data structure is used to handle recursion in C?",
+        "options": ["Queue", "Stack", "Linked List", "Heap"],
+        "correctOption": "Stack"
+    },
+    {
+        "question": "Which of the following are correct file opening modes in C?",
+        "options": ["w", "a", "x","All the above"],
+        "correctOption": "All the above"
+    },
+    {
+        "question": "Which of the following are not standard header files in C?",
+        "options": ["<stdlib.h>", "<math.h>", "<iomanip.h>", "<string.h>"],
+        "correctOption": "<iomanip.h>"
+    },
+    {
+        "question": "Which of the following function is used to open a file in C++?",
+        "options": ["fopen()", "ifstream()", "open()", "file.open()"],
+        "correctOption": "fopen()"
+    },
+    {
+        "question": "Which of the following is an exit controlled loop?",
+        "options": ["for loop", "while loop", "do-while loop", "if-else loop"],
+        "correctOption": "do-while loop"
+    },
+    {
+        "question": "Which of the following is not a storage class specifier in C?",
+        "options": ["auto", "register", "static", "volatile"],
+        "correctOption": "volatile"
+    },
+    {
+        "question": "Which of the following is not true about structs in C?",
+        "options": [
+            "Structs can contain functions",
+            "Structs can be nested",
+            "Structs can have constructors",
+            "Structs can contain arrays"
+        ],
+        "correctOption": "Structs can contain functions"
+    },
+    {
+        "question": "Which of the following is the proper syntax for declaring macros in C?",
+        "options": [
+            "#define MACRO_NAME(parameters) replacement",
+            "#define MACRO_NAME(parameters) { replacement }",
+            "#define MACRO_NAME(parameters); replacement",
+            "#define MACRO_NAME(parameters): replacement"
+        ],
+        "correctOption": "#define MACRO_NAME(parameters) replacement"
+    },
+    {
+        "question": "Which of the following should be used to free memory from a pointer allocated using the \"new\" operator?",
+        "options": ["free()", "delete", "delete[]", "malloc()"],
+        "correctOption": "delete"
+    },
+    {
+        "question": "Which of the following will occur if we call the free() function on a NULL pointer?",
+        "options": ["Memory leak", "Segmentation fault", "Program crash", "No error"],
+        "correctOption": "No error"
+    },
+    {
+        "question": "What is the output of the following code snippet?",
+        "code_snippet": "int main() {\n\tint sum = 2 + 4 / 2 + 6 * 2;\n\tprintf(\"%d\", sum);\n\treturn 0;\n}",
+        "options": ["12", "16", "10", "14"],
+        "correctOption": "16"
+    },
+    {
+        "question": "What will be the output of the following code snippet?",
+        "code_snippet": "#include <stdio.h>\nunion School {\n    int age, rollNo;\n    double marks;\n};\nvoid solve() {\n    union School sc;\n    sc.age = 19;\n    sc.rollNo = 82;\n    sc.marks = 19.04;\n    printf(\"%d\", (int)sizeof(sc));\n}\nint main() {\n    solve();\n\treturn 0;\n}",
+        "options": ["4", "8", "12", "16"],
+        "correctOption": "8"
+    },
+    
+    {
+        "question": "How is an array initialized in C language?",
+        "options": [
+            "int arr[] = {1, 2, 3};",
+            "int arr[3] = {1, 2, 3};",
+            "int arr[3] = {1};",
+            "All of the above"
+        ],
+        "correctOption": "All of the above"
+    },
+    
+    {
+        "question": "How to declare a double-pointer in C?",
+        "options": [
+            "double **ptr;",
+            "int **ptr;",
+            "float *ptr;",
+            "None of the above"
+        ],
+        "correctOption": "double **ptr;"
+    },
+    {
+        "question": "How to find the length of an array in C?",
+        "options": [
+            "Using the sizeof operator",
+            "Counting elements until a sentinel value",
+            "Storing the length as a separate variable",
+            "All of the above"
+        ],
+        "correctOption": "Using the sizeof operator"
+    },
+     {
+        "question": "What is an object in C++?",
+        "options": [
+            "A variable of any type",
+            "An instance of a class",
+            "A function within a class",
+            "A keyword in C++"
+        ],
+        "correctOption": "An instance of a class"
+    },
+    {
+        "question": "Identify the incorrect constructor type.",
+        "options": [
+            "Default constructor",
+            "Friend constructor",
+            "Parameterized constructor",
+            "Copy constructor"
+        ],
+        "correctOption": "Friend constructor"
+    },
+    {
+        "question": "Identify the logical AND operator.",
+        "options": [
+            "&&",
+            "||",
+            "&",
+            "!"
+        ],
+        "correctOption": "&&"
+    },
+    {
+        "question": "Identify the scope resolution operator.",
+        "options": [
+            "::",
+            ":",
+            "->",
+            "."
+        ],
+        "correctOption": "::"
+    },
+    {
+        "question": "Identify the size of int datatype in C++.",
+        "options": [
+            "Depends on the system architecture",
+            "Always 4 bytes",
+            "Always 2 bytes",
+            "Always 8 bytes"
+        ],
+        "correctOption": "Depends on the system architecture"
+    },
+    {
+        "question": "Identify the storage classes that have global visibility.",
+        "options": [
+            "static",
+            "extern",
+            "mutable",
+            "volatile"
+        ],
+        "correctOption": "extern"
+    },
+    {
+        "question": "Size of wchar_t is.",
+        "options": [
+            "Depends on the system architecture",
+            "Always 4 bytes",
+            "Always 2 bytes",
+            "Always 8 bytes"
+        ],
+        "correctOption": "Depends on the number of bits in the system"
+    },
+    {
+        "question": "The constants in C++ are also known as.",
+        "options": [
+            "Variables",
+            "Identifiers",
+            "Literals",
+            "Keywords"
+        ],
+        "correctOption": "Literals"
+    },
+    {
+        "question": "Total types of constructors in C++ are.",
+        "options": [
+            "1",
+            "2",
+            "3",
+            "4"
+        ],
+        "correctOption": "3"
+    },
+    {
+        "question": "Total types of errors in C++.",
+        "options": [
+            "1",
+            "2",
+            "3",
+            "4"
+        ],
+        "correctOption": "3"
+    },
+    {
+        "question": "Under which pillar of OOPS does base class and derived class relationship come?",
+        "options": [
+            "Encapsulation",
+            "Polymorphism",
+            "Inheritance",
+            "Abstraction"
+        ],
+        "correctOption": "Inheritance"
+    },
+    {
+        "question": "Using which of the following data type can 19.54 be represented?",
+        "options": [
+            "int",
+            "float",
+            "double",
+            "char"
+        ],
+        "correctOption": "double"
+    },
+    {
+        "question": "Using which of the following keywords can an exception be generated?",
+        "options": [
+            "try",
+            "throw",
+            "catch",
+            "finally"
+        ],
+        "correctOption": "throw"
+    },
+    {
+        "question": "What does a C++ class hold?",
+        "options": [
+            "Only functions",
+            "Only data members",
+            "Both functions and data members",
+            "Neither functions nor data members"
+        ],
+        "correctOption": "Both functions and data members"
+    },
+    {
+        "question": "Identify the format string among the following.",
+        "options": [
+            "%d",
+            "%f",
+            "%c",
+            "%s"
+        ],
+        "correctOption": "%d"
+    },
+    {
+        "question": "What is do-while loop also known as?",
+        "options": [
+            "Pre-test loop",
+            "Infinite loop",
+            "Exit control loop",
+            "Post-test loop"
+        ],
+        "correctOption": "Exit control loop"
+    },
+    {
+        "question": "What is the ASCII value of '\\0' character?",
+        "options": [
+            "0",
+            "48",
+            "255",
+            "1"
+        ],
+        "correctOption": "0"
+    },
+    {
+        "question": "What is the number of parameters that a default constructor requires?",
+        "options": [
+            "0",
+            "1",
+            "2",
+            "Depends on the class"
+        ],
+        "correctOption": "0"
+    },
+    {
+        "question": "When can an inline function be expanded?",
+        "options": [
+            "At runtime",
+            "During preprocessing",
+            "During compile time",
+            "At link time"
+        ],
+        "correctOption": "During compile time"
+    },
+    {
+        "question": "Which of the following data type is supported in C++ but not in C?",
+        "options": [
+            "int",
+            "float",
+            "double",
+            "boolean"
+        ],
+        "correctOption": "boolean"
+    },
+    {
+        "question": "Which of the following functions can be inherited from base class?",
+        "options": [
+            "Private functions",
+            "Static functions",
+            "Public functions",
+            "None of the functions"
+        ],
+        "correctOption": "None of the functions"
+    },
+    {
+        "question": "Which of the following is not a type of inheritance?",
+        "options": [
+            "Single inheritance",
+            "Multiple inheritance",
+            "Hierarchical inheritance",
+            "Distributed inheritance"
+        ],
+        "correctOption": "Distributed inheritance"
+    },
+    {
+        "question": "Which of the following is the correct identifier?",
+        "options": [
+            "var_name12@",
+            "12var_name",
+            "var_name12",
+            "var name12"
+        ],
+        "correctOption": "var_name12"
+    },
+    {
+        "question": "Which of the following is 'address of operator'?",
+        "options": [
+            "*",
+            "&",
+            "->",
+            "."
+        ],
+        "correctOption": "&"
+    },
+    {
+        "question": "Which of the following loops is best when we know the number of iterations?",
+        "options": [
+            "for loop",
+            "while loop",
+            "do-while loop",
+            "if-else loop"
+        ],
+        "correctOption": "for loop"
+    },
+    {
+        "question": "Which of the following types is the language C++?",
+        "options": [
+            "Dynamically typed",
+            "Statically typed",
+            "Weakly typed",
+            "Strongly typed"
+        ],
+        "correctOption": "Statically typed"
+    },
+    {
+        "question": "Why are comments used?",
+        "options": [
+            "To confuse other programmers",
+            "To make the code colorful",
+            "To make the code run faster",
+            "To help others read & understand the program"
+        ],
+        "correctOption": "To help others read & understand the program"
+    },
+{
+        "question": "What will be the output of the following code snippet?",
+        "code_snippet": "#include <stdio.h>\nstruct School {\n    int age, rollNo;\n};\nvoid solve() {\n    struct School sc;\n    sc.age = 19;\n    sc.rollNo = 82;\n    printf(\"%d %d\", sc.age, sc.rollNo);\n}\nint main() {\n    solve();\n\treturn 0;\n}",
+        "options": [
+            "19 19",
+            "82 19",
+            "19 82",
+            "82 82"
+        ],
+        "correctOption": "19 82"
+    },
+    {
+        "question": "What will be the output of the following code snippet?",
+        "code_snippet": "#include <stdio.h>\nvoid solve() {\n    int a[] = {1, 2, 3, 4, 5};\n    int sum = 0;\n    for(int i = 0; i < 5; i++) {\n        if(i % 2 == 0) {\n            sum += *(a + i);\n        }\n        else {\n            sum -= *(a + i);\n        }\n    }\n    printf(\"%d\", sum);\n}\nint main() {\n\tsolve();\n\treturn 0;\n}",
+        "options": [
+            "3",
+            "-3",
+            "5",
+            "-5"
+        ],
+        "correctOption": "-3"
+    },
+    {
+        "question": "What will be the output of the following code snippet?",
+        "code_snippet": "#include <stdio.h>\nvoid solve() {\n    int x = 2;\n    printf(\"%d\", (x << 1) + (x >> 1));\n}\nint main() {\n    solve();\n\treturn 0;\n}",
+        "options": [
+            "1",
+            "2",
+            "3",
+            "4"
+        ],
+        "correctOption": "3"
+    },
+    {
+        "question": "What will be the output of the following code snippet?",
+        "code_snippet": "#include <stdio.h>\n#define VAL 5\nint getInput() {\n    return VAL;\n}\nvoid solve() {\n    const int x = getInput();\n    printf(\"%d\", x);\n}\nint main() {\n    solve();\n\treturn 0;\n}",
+        "options": [
+            "5",
+            "10",
+            "0",
+            "Undefined behavior"
+        ],
+        "correctOption": "5"
+    },
+    {
+        "question": "What will be the output of the following code snippet?",
+        "code_snippet": "#include <stdio.h>\n#define CUBE(x) (x * x * x)\nvoid solve() {\n    int ans = 216 / CUBE(3);\n    printf(\"%d\", ans);\n}\nint main() {\n    solve();\n\treturn 0;\n}",
+        "options": [
+            "4",
+            "6",
+            "8",
+            "12"
+        ],
+        "correctOption": "8"
+    },
+    {
+        "question": "What will be the output of the following code snippet?",
+        "code_snippet": "#include <stdio.h>\nvoid solve() {\n    int n = 24;\n    int l = 0, r = 100, ans = n;\n    while(l <= r) {\n        int mid = (l + r) / 2;\n        if(mid * mid <= n) {\n            ans = mid;\n            l = mid + 1;\n        }\n        else {\n            r = mid - 1;\n        }\n    }\n    printf(\"%d\", ans);\n}\nint main() {\n    solve();\n\treturn 0;\n}",
+        "options": [
+            "3",
+            "4",
+            "5",
+            "6"
+        ],
+        "correctOption": "4"
+    },
+    {
+        "question": "What will be the output of the following code snippet?",
+        "code_snippet": "#include <stdio.h>\nvoid solve() {\n    int x = 1, y = 2;\n    printf(x > y ? \"Greater\" : x == y ? \"Equal\" : \"Lesser\");\n}\nint main() {\n    solve();\n\treturn 0;\n}",
+        "options": [
+            "Greater",
+            "Equal",
+            "Lesser",
+            "Compiler error"
+        ],
+        "correctOption": "Lesser"
+    },
+    {
+        "question": "What will be the output of the following code snippet?",
+        "code_snippet": "#include <stdio.h>\nvoid solve() {\n    printf(\"%d \", 9 / 2);\n    printf(\"%f\", 9.0 / 2);\n}\nint main() {\n    solve();\n\treturn 0;\n}",
+        "options": [
+            "4 4.500000",
+            "4 4.0",
+            "5 4.5",
+            "Compiler error"
+        ],
+        "correctOption": "4 4.500000"
+    },
+    {
+        "question": "What will be the output of the following code snippet?",
+        "code_snippet": "#include <stdio.h>\nvoid solve() {\n    int first = 10, second = 20;\n    int third = first + second;\n    {\n        int third = second - first;\n        printf(\"%d \", third);\n    }\n    printf(\"%d\", third);\n}\nint main() {\n\tsolve();\n\treturn 0;\n}",
+        "options": [
+            "10 -10",
+            "20 10",
+            "30 20",
+            "10 20"
+        ],
+        "correctOption": "10 -10"
+    }
+];
+let currentQuestionIndex = 0;
+        let score = 0;
+        let timeLeft = 600; // seconds
+        let timer;
+        let selectedQuestions = [];
+
+        function startQuiz() {
+            console.log('Starting quiz...');
+            selectedQuestions = questions.sort(() => 0.5 - Math.random()).slice(0, 10);
+            console.log('Selected questions:', selectedQuestions);
+            currentQuestionIndex = 0;
+            score = 0;
+            timeLeft = 600;
+            document.getElementById('result-container').style.display = 'none';
+            document.getElementById('question-container').style.display = 'block';
+            document.getElementById('current-score').innerText = score; 
+            showQuestion();
+            startTimer();
+        }
+
+        function showQuestion() {
+            console.log('Showing question...');
+            if (currentQuestionIndex < selectedQuestions.length) {
+                const questionData = selectedQuestions[currentQuestionIndex];
+                document.getElementById('question-text').innerText = questionData.question;
+                document.getElementById('code-container').innerHTML = questionData.code_snippet ? `<pre><code>${questionData.code_snippet}</code></pre>` : '';
+                const optionsContainer = document.getElementById('options-container');
+                optionsContainer.innerHTML = '';
+                questionData.options.forEach((option, index) => {
+                    const button = document.createElement('button');
+                    button.className = 'option';
+                    button.innerText = option;
+                    button.onclick = function() {
+                        selectOption(this);
+                    };
+                    optionsContainer.appendChild(button);
+                });
+            } else {
+                endQuiz();
+            }
+        }
+
+        function selectOption(option) {
+            const questionData = selectedQuestions[currentQuestionIndex];
+            const correct = option.innerText === questionData.correctOption;
+            option.style.backgroundColor = correct ? 'green' : 'red';
+            if (correct) {
+                score++;
+                document.getElementById('current-score').innerText = score;
+            }
+            setTimeout(() => {
+                currentQuestionIndex++;
+                if (currentQuestionIndex >= selectedQuestions.length) {
+                    endQuiz();
+                } else {
+                    showQuestion();
+                }
+            }, 1000); // Wait 1 second before showing the next question
+        }
+
+    
+        function redirectToIndex(score, quizType) {
+    console.log(`Redirecting to http://127.0.0.1:5000/ with score: ${score} and quiz type: ${quizType}`);
+    window.location.href = `http://127.0.0.1:5000/?score=${score*10}&quizType=${quizType}`;
+}
+
+
+    // Function to handle quiz completion
+    function endQuiz() {
+        clearInterval(timer);
+        const result = `You scored ${score} out of ${selectedQuestions.length}`;
+        // Redirect to index.html with the score parameter
+        redirectToIndex(score,'coding');
+    }
+
+        function startTimer() {
+            document.getElementById('time-left').innerText = `${timeLeft}`;
+            timer = setInterval(() => {
+                timeLeft--;
+                document.getElementById('time-left').innerText = `${timeLeft}`;
+                if (timeLeft <= 0) {
+                    endQuiz();
+                }
+            }, 1000);
+        }
+
+        function restartQuiz() {
+            clearInterval(timer);
+            startQuiz();
+        }
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            console.log('Document loaded, starting quiz...');
+            startQuiz();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information Form</title>
+    <style>
+        .input-container {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        /* Existing CSS styles */
+        html, body {
+            height: 100%;
+            margin: 0;
+            overflow: hidden; /* Prevent scrolling */
+            font-family: Arial, sans-serif;
+            background-color: #8ec3eb; /* Change background color to seashell */
+        }
+        .form-container {
+            background-color: #E0FFFF;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            width: 100%;
+            margin-top: 50px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .form-group {
+            flex: 0 0 48%;
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .form-group input[readonly], .form-group select[readonly] {
+            background-color: #f8f9fa; /* Background color when readonly */
+        }
+        .form-group input:focus, .form-group select:focus {
+            border-color: #8ec3eb;
+            outline: none;
+        }
+        .form-group button {
+            width: 50%;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 0 auto;
+            display: block;
+        }
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+        .result-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .quiz-button, .search-button {
+            width: auto;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .quiz-button {
+            background-color: #28a745;
+            color: #fff;
+        }
+        .quiz-button:hover {
+            background-color: #218838;
+        }
+        .search-button {
+            background-color: #17a2b8;
+            color: #fff;
+        }
+        .search-button:hover {
+            background-color: #138496;
+        }
+        #coding, #quiz-score {
+            margin-right: 20px; /* Adjust the value as needed */
+        }
+    </style>
+</head>
+<body onload="initializeScores()">
+
+    <div class="form-container">
+        <h2>Student Information Form</h2>
+        <form action="{{ url_for('predict') }}" method="POST" id="studentForm" onsubmit="return validateForm()">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select id="gender" name="gender" required onchange="checkFormFilled()">
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="ssc">SSC Score</label>
+                    <input type="text" id="ssc" name="ssc" placeholder="Enter your SSC score" required oninput="validateInput(this); checkFormFilled();">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="hsc">HSC Score</label>
+                    <input type="text" id="hsc" name="hsc" placeholder="Enter your HSC score" required oninput="validateInput(this); checkFormFilled();">
+                </div>
+                <div class="form-group">
+                    <label for="cgpa">CGPA</label>
+                    <input type="text" id="cgpa" name="cgpa" placeholder="Enter your CGPA" required oninput="validateInput(this); checkFormFilled();">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="stream">Stream</label>
+                    <select id="stream" name="stream" required onchange="checkFormFilled()">
+                        <option value="">Select Stream</option>
+                        <option value="Sci&Tech">CSE & IT</option>
+                        <option value="Comm&Mgmt">ECE & EEE</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="backlogs">Number of Backlogs</label>
+                    <input type="text" id="backlogs" name="backlogs" placeholder="Enter number of backlogs" required pattern="[0-9]+" oninput="validateInput(this); checkFormFilled();">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="internships">Number of Internships</label>
+                    <input type="text" id="internships" name="internships" placeholder="Enter number of internships" required pattern="[0-9]+" oninput="validateInput(this); checkFormFilled();">
+                </div>
+                <div class="form-group">
+                    <label for="experience">Working Experience</label>
+                    <select id="experience" name="experience" required onchange="checkFormFilled()">
+                        <option value="">Select Experience</option>
+                        <option value="No">No</option>
+                        <option value="Yes">Yes</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="aptitude">Aptitude Score</label>
+                    <div class="input-container">
+                        <input type="text" id="quiz-score" name="quiz-score" placeholder="Quiz Score" readonly required>
+                        <button type="button" class="quiz-button" onclick="startQuiz()">Start Quiz</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="coding">Coding Skills</label>
+                    <div class="input-container">
+                        <input type="text" id="coding" name="coding" placeholder="Rate your coding skills" readonly required>
+                        <button type="button" class="quiz-button" onclick="startCoding()">Start Quiz</button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" id="predictButton" disabled>Predict</button>
+            </div>
+        </form>
+        <div class="result-container">
+            {% if result %}
+                <p>{{ result }}</p>
+            {% endif %}
+        </div>
+    </div>
+    <script>
+        // Existing JavaScript functions
+        function startQuiz() {
+            saveCurrentScores();
+            window.location.href = "{{ url_for('quiz') }}";
+        }
+
+        function startCoding() {
+            saveCurrentScores();
+            window.location.href="{{url_for('coding')}}"
+        }
+
+        function saveCurrentScores() {
+            const aptitudeScore = document.getElementById('quiz-score').value;
+            const codingScore = document.getElementById('coding').value;
+            
+            if (aptitudeScore) {
+                localStorage.setItem('aptitudeScore', aptitudeScore);
+            }
+
+            if (codingScore) {
+                localStorage.setItem('codingScore', codingScore);
+            }
+        }
+
+        // Function to initialize scores when loading the form
+        function initializeScores() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const score = urlParams.get('score');
+            const quizType = urlParams.get('quizType');
+
+            if (quizType === 'aptitude' && score) {
+                setAptitudeScore(score);
+            } else if (quizType === 'coding' && score) {
+                setCodingScore(score);
+            }
+
+            // If the page is loaded for the first time (no query params), clear the scores
+            if (!score && !quizType) {
+                localStorage.removeItem('aptitudeScore');
+                localStorage.removeItem('codingScore');
+            }
+
+            // Retrieve stored scores from localStorage and set them
+            const storedAptitudeScore = localStorage.getItem('aptitudeScore');
+            if (storedAptitudeScore) {
+                document.getElementById('quiz-score').value = storedAptitudeScore;
+            }
+
+            const storedCodingScore = localStorage.getItem('codingScore');
+            if (storedCodingScore) {
+                document.getElementById('coding').value = storedCodingScore;
+            }
+
+            // Check if all fields are filled to enable the predict button
+            checkFormFilled();
+        }
+
+        function setAptitudeScore(score) {
+            if (score) {
+                document.getElementById('quiz-score').value = score;
+                localStorage.setItem('aptitudeScore', score);
+            }
+        }
+
+        function setCodingScore(score) {
+            if (score) {
+                document.getElementById('coding').value = score;
+                localStorage.setItem('codingScore', score);
+            }
+        }
+
+        // Function to validate input and display warning message
+        function validateInput(input) {
+            var value = input.value;
+            if (!/^\d*\.?\d*$/.test(value)) {
+                alert('Invalid input. Please enter a valid numeric value.');
+                input.value = '';
+            }
+        }
+
+        // Function to check if all form fields are filled and enable/disable predict button
+        function checkFormFilled() {
+            var ssc = document.getElementById('ssc').value;
+            var hsc = document.getElementById('hsc').value;
+            var cgpa = document.getElementById('cgpa').value;
+            var internships = document.getElementById('internships').value;
+            var backlogs = document.getElementById('backlogs').value;
+            var gender = document.getElementById('gender').value;
+            var stream = document.getElementById('stream').value;
+            var experience = document.getElementById('experience').value;
+            var aptitudeScore = document.getElementById('quiz-score').value;
+            var codingScore = document.getElementById('coding').value;
+
+            var allFieldsFilled = ssc && hsc && cgpa && internships && backlogs && gender && stream && experience && aptitudeScore && codingScore;
+            document.getElementById('predictButton').disabled = !allFieldsFilled;
+        }
+
+        // Modified validateForm function to enable/disable predict button
+        function validateForm() {
+            var ssc = document.getElementById('ssc').value;
+            var hsc = document.getElementById('hsc').value;
+            var cgpa = document.getElementById('cgpa').value;
+            var internships = document.getElementById('internships').value;
+            var backlogs = document.getElementById('backlogs').value;
+
+            // Validate internships
+            if (!/^[0-9]+$/.test(internships)) {
+                alert('Number of internships should be an integer.');
+                document.getElementById('internships').value = '';
+                return false;
+            }
+
+            // Validate backlogs
+            if (!/^[0-9]+$/.test(backlogs)) {
+                alert('Number of backlogs should be an integer.');
+                document.getElementById('backlogs').value = '';
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,217 @@
+gender,SSC Score,HSC Score,CGPA,Stream,Aptitude,No of internships,working experience,No of backlogs,Coding Skills,status
+M,67,91,58,Sci&Tech,56,2,No,0,55,Placed
+M,79.33,78.33,77.48,Sci&Tech,87,3,Yes,0,86.5,Placed
+M,65,68,64,Comm&Mgmt,74,3,No,0,75,Placed
+M,56,52,52,Sci&Tech,68,0,No,1,66,Not Placed
+M,85.8,73.6,73.3,Comm&Mgmt,97,4,No,0,96.8,Placed
+M,55,49.8,67.25,Sci&Tech,53,1,Yes,2,55,Not Placed
+F,46,49.2,79,Comm&Mgmt,76,1,No,2,74.28,Not Placed
+M,82,64,66,Sci&Tech,69,3,Yes,0,67,Placed
+M,73,79,72,Comm&Mgmt,93,2,No,0,91.34,Placed
+M,58,70,61,Comm&Mgmt,52,1,No,1,54,Not Placed
+M,58,61,60,Comm&Mgmt,60,3,Yes,0,62,Placed
+M,69.6,68.4,78.3,Comm&Mgmt,58,4,Yes,0,60,Placed
+F,47,55,65,Comm&Mgmt,56,0,No,2,62,Not Placed
+F,77,87,59,Comm&Mgmt,70,2,No,0,68,Placed
+M,62,47,50,Comm&Mgmt,60,1,No,2,76,Not Placed
+F,65,75,69,Comm&Mgmt,75,3,Yes,0,72,Placed
+M,63,66.2,65.6,Comm&Mgmt,65,3,Yes,0,60,Placed
+F,55,67,64,Comm&Mgmt,50,1,No,1,60,Not Placed
+F,63,66,64,Comm&Mgmt,52,1,No,1,68,Not Placed
+M,60,67,70,Comm&Mgmt,60,3,Yes,0,50.48,Placed
+M,62,65,66,Comm&Mgmt,65,3,No,0,50,Placed
+F,79,76,85,Comm&Mgmt,68,3,No,0,95,Placed
+F,69.8,60.8,72.23,Sci&Tech,63,4,No,0,55.53,Placed
+F,77.4,60,64.74,Sci&Tech,98,4,Yes,0,92,Placed
+M,76.5,97.7,78.86,Sci&Tech,95,3,No,0,97.4,Placed
+F,52.58,54.6,50.2,Comm&Mgmt,65,1,Yes,3,76,Not Placed
+M,71,79,66,Comm&Mgmt,89,2,Yes,0,94,Placed
+M,63,67,66,Comm&Mgmt,65,3,No,0,68,Placed
+M,76.76,76.5,67.5,Comm&Mgmt,75,2,Yes,0,73.35,Placed
+M,62,67,58,Comm&Mgmt,40,1,No,1,77,Not Placed
+F,64,73.5,73,Comm&Mgmt,60,4,No,0,52,Placed
+F,67,53,65,Sci&Tech,43,0,No,1,64,Not Placed
+F,61,81,66.4,Comm&Mgmt,59,2,No,0,50.89,Placed
+F,87,65,81,Comm&Mgmt,90,2,Yes,0,88,Placed
+M,62,51,52,Others,51,1,No,1,68.44,Not Placed
+F,69,78,72,Comm&Mgmt,78,2,No,0,71,Placed
+M,51,44,57,Comm&Mgmt,37,1,No,2,64,Not Placed
+F,79,76,65.6,Sci&Tech,60,3,No,0,58,Placed
+F,73,58,66,Comm&Mgmt,54,3,No,0,53.7,Placed
+M,81,68,64,Sci&Tech,94,4,No,0,93,Placed
+F,78,77,80,Comm&Mgmt,66,4,No,0,60,Placed
+F,74,63.16,65,Comm&Mgmt,51,1,Yes,1,65,Not Placed
+M,49,39,65,Others,52,1,No,1,63,Not Placed
+M,87,87,68,Comm&Mgmt,99,2,No,0,95,Placed
+F,77,73,81,Comm&Mgmt,88,3,Yes,0,89,Placed
+F,76,64,72,Sci&Tech,57,1,No,2,58,Not Placed
+F,70.89,71.98,65.6,Comm&Mgmt,56,0,No,1,68,Not Placed
+M,63,60,57,Comm&Mgmt,75,2,Yes,0,78,Placed
+M,63,62,68,Comm&Mgmt,68,3,No,0,64,Placed
+F,50,37,52,Others,50,0,No,2,65,Not Placed
+F,75.2,73.2,68.4,Comm&Mgmt,66,3,No,0,65,Placed
+M,54.4,61.12,56.2,Comm&Mgmt,40,1,No,2,67,Not Placed
+F,40.89,45.83,53,Comm&Mgmt,46,0,No,1,71.2,Not Placed
+M,80,70,72,Sci&Tech,84,2,No,0,87,Placed
+F,74,60,69,Comm&Mgmt,73,3,No,0,78,Placed
+M,60.4,66.6,65,Comm&Mgmt,70,4,No,0,71,Placed
+M,63,71.4,61.4,Comm&Mgmt,64,3,No,0,68,Placed
+M,68,76,74,Comm&Mgmt,83,4,No,0,80,Placed
+M,74,62,68,Comm&Mgmt,74,2,No,0,74,Placed
+M,52.6,65.58,72.11,Sci&Tech,58,3,No,0,57.6,Placed
+M,74,70,72,Comm&Mgmt,61,4,Yes,0,60,Placed
+M,84.2,73.4,66.89,Comm&Mgmt,62,3,No,0,61.6,Placed
+F,86.5,64.2,67.4,Sci&Tech,60,2,No,0,59,Placed
+M,61,70,64,Comm&Mgmt,44,0,No,2,68.5,Not Placed
+M,80,73,75,Comm&Mgmt,63,4,No,0,61,Placed
+M,54,47,57,Comm&Mgmt,50,1,No,2,89.69,Not Placed
+M,83,74,66,Comm&Mgmt,70,2,No,0,68.92,Placed
+M,80.92,78.5,67,Comm&Mgmt,71,3,No,0,68.71,Placed
+F,69.7,47,72.7,Sci&Tech,34,1,No,1,79,Not Placed
+M,73,73,66,Sci&Tech,76,4,Yes,0,70,Placed
+M,82,61,62,Sci&Tech,90,2,No,0,89,Placed
+M,75,70.29,71,Comm&Mgmt,96,3,No,0,95,Placed
+M,84.86,67,78,Comm&Mgmt,97,2,No,0,95.5,Placed
+M,64.6,83.83,71.72,Comm&Mgmt,88,3,No,0,86,Placed
+M,56.6,64.8,70.2,Comm&Mgmt,85,3,No,0,84.27,Placed
+F,59,62,77.5,Comm&Mgmt,28,0,No,1,74,Not Placed
+F,66.5,70.4,71.93,Comm&Mgmt,62,3,No,0,61,Placed
+M,64,80,65,Sci&Tech,70,2,Yes,0,69,Placed
+M,84,90.9,64.5,Sci&Tech,87,3,No,0,86.04,Placed
+F,69,62,66,Sci&Tech,20,1,No,2,75,Not Placed
+F,69,62,69,Comm&Mgmt,64,4,Yes,0,67,Placed
+M,81.7,63,67,Comm&Mgmt,88,4,Yes,0,86,Placed
+M,63,67,74,Comm&Mgmt,48,0,No,1,82,Not Placed
+M,84,79,68,Sci&Tech,88,2,Yes,0,84,Placed
+M,70,63,70,Sci&Tech,59,3,Yes,0,55,Placed
+F,83.84,89.83,77.2,Comm&Mgmt,80,3,Yes,0,78.74,Placed
+M,62,63,64,Comm&Mgmt,69,2,No,0,67,Placed
+M,59.6,51,60,Others,45,1,No,2,75,Not Placed
+F,66,62,73,Comm&Mgmt,59,4,No,0,58,Placed
+F,84,75,69,Sci&Tech,62,4,Yes,0,62,Placed
+F,85,90,82,Comm&Mgmt,93,3,No,0,92,Placed
+M,52,57,50.8,Comm&Mgmt,49,0,No,2,67,Not Placed
+F,60.23,69,66,Comm&Mgmt,73,2,No,0,72,Placed
+M,52,62,54,Comm&Mgmt,38,0,No,2,72,Not Placed
+M,58,62,64,Comm&Mgmt,57,4,No,0,53.88,Placed
+M,73,78,65,Comm&Mgmt,99,2,Yes,0,95.46,Placed
+F,76,70,76,Comm&Mgmt,69,3,Yes,0,66,Placed
+F,70.5,62.5,61,Comm&Mgmt,60,1,No,2,93.91,Not Placed
+F,69,73,65,Comm&Mgmt,72,3,No,0,70,Placed
+M,54,82,63,Sci&Tech,49,1,No,1,50,Not Placed
+F,45,57,58,Comm&Mgmt,51,1,Yes,3,56.39,Not Placed
+M,63,72,68,Comm&Mgmt,79,4,No,0,78,Placed
+F,77,61,68,Comm&Mgmt,58,2,Yes,0,57.5,Placed
+M,73,78,73,Sci&Tech,88,3,Yes,0,85,Placed
+M,69,63,65,Comm&Mgmt,59,3,Yes,0,55,Placed
+M,59,64,58,Sci&Tech,40,0,No,2,85,Not Placed
+M,61.08,50,54,Sci&Tech,45,0,No,2,71,Not Placed
+M,82,90,83,Comm&Mgmt,83,4,No,0,80,Placed
+M,61,82,69,Comm&Mgmt,85,2,No,0,84,Placed
+M,52,63,65,Sci&Tech,60,1,Yes,1,86,Not Placed
+F,69.5,70,72,Sci&Tech,59,3,No,0,57.2,Placed
+M,51,54,61,Sci&Tech,58,0,No,2,60,Not Placed
+M,58,61,61,Comm&Mgmt,60,2,No,0,58,Placed
+F,73.96,79,67,Comm&Mgmt,73,3,No,0,72.15,Placed
+M,65,68,69,Comm&Mgmt,54,2,No,0,53.7,Placed
+F,73,63,66,Comm&Mgmt,90,4,No,0,89,Placed
+M,68.2,72.8,66.6,Comm&Mgmt,97,3,Yes,0,96,Placed
+M,77,75,73,Sci&Tech,83,4,No,0,80,Placed
+M,76,80,78,Sci&Tech,98,3,Yes,0,97,Placed
+M,60.8,68.4,64.6,Comm&Mgmt,85,2,Yes,0,82.66,Placed
+M,58,40,59,Comm&Mgmt,43,1,No,2,73,Not Placed
+F,64,67,69.6,Sci&Tech,68,5,Yes,0,55.67,Placed
+F,66.5,66.8,69.3,Comm&Mgmt,83,2,Yes,0,80.4,Placed
+M,74,59,73,Comm&Mgmt,65,3,Yes,0,60,Placed
+M,67,71,64.33,Others,78,4,Yes,0,64,Placed
+F,84,73,73,Comm&Mgmt,68,5,No,0,75,Placed
+F,79,61,75.5,Sci&Tech,88,5,Yes,0,70,Placed
+F,72,60,69,Comm&Mgmt,83,2,No,0,55.5,Placed
+M,80.4,73.4,77.72,Sci&Tech,69,3,Yes,0,81.2,Placed
+M,76.7,89.7,66,Comm&Mgmt,93,2,Yes,0,90,Placed
+M,62,65,60,Comm&Mgmt,43,0,No,1,84,Not Placed
+F,74.9,57,62,Others,83,3,Yes,0,80,Placed
+M,67,68,64,Comm&Mgmt,71,4,Yes,0,74.4,Placed
+M,73,64,77,Comm&Mgmt,66,2,Yes,0,65,Placed
+F,77.44,92,72,Comm&Mgmt,92,3,Yes,0,94,Placed
+F,72,56,69,Comm&Mgmt,56,3,No,0,55.6,Placed
+F,47,59,64,Comm&Mgmt,42,1,No,1,78,Not Placed
+M,67,63,72,Comm&Mgmt,54,4,No,0,56,Placed
+F,82,64,73,Sci&Tech,98,2,Yes,0,96,Placed
+M,77,70,59,Comm&Mgmt,62,3,Yes,0,58,Placed
+M,65,64.8,69.5,Comm&Mgmt,67,2,Yes,0,56,Placed
+M,66,64,60,Comm&Mgmt,49,0,No,2,60,Not Placed
+M,85,60,73.43,Sci&Tech,63,2,Yes,0,60,Placed
+M,77.67,64.89,70.67,Comm&Mgmt,90,2,No,0,89,Placed
+M,52,50,61,Comm&Mgmt,45,1,No,10,60,Not Placed
+M,89.4,65.66,71.25,Sci&Tech,71,3,No,0,72,Placed
+M,62,63,66,Comm&Mgmt,86,2,No,0,85,Placed
+M,70,74,65,Comm&Mgmt,84,4,No,0,83,Placed
+F,77,86,56,Others,58,2,No,0,57,Placed
+M,44,58,55,Comm&Mgmt,49,0,Yes,1,64.25,Not Placed
+M,71,58.66,58,Sci&Tech,58,4,Yes,0,56,Placed
+M,65,65,75,Comm&Mgmt,84,2,No,0,83,Placed
+F,75.4,60.5,84,Sci&Tech,99,2,No,0,98,Placed
+M,49,59,65,Sci&Tech,72,4,Yes,0,86,Placed
+M,53,63,60,Comm&Mgmt,77,2,Yes,0,70,Placed
+M,51.57,74.66,59.9,Comm&Mgmt,48,1,Yes,1,56.15,Not Placed
+M,84.2,69.4,65,Sci&Tech,83,2,Yes,0,80,Placed
+M,66.5,62.5,60.9,Comm&Mgmt,94,2,No,0,93.4,Placed
+M,67,63,64,Sci&Tech,48,0,No,1,60,Not Placed
+M,52,49,58,Comm&Mgmt,47,0,No,1,62,Not Placed
+M,87,74,65,Sci&Tech,69,4,Yes,0,75,Placed
+M,55.6,51,57.5,Comm&Mgmt,50,1,No,2,57.63,Not Placed
+M,74.2,87.6,77.25,Comm&Mgmt,76,2,Yes,0,75.2,Placed
+M,63,67,64,Sci&Tech,77,2,No,0,75,Placed
+F,67.16,72.5,63.35,Comm&Mgmt,59,2,No,0,53.04,Placed
+F,63.3,78.33,74,Comm&Mgmt,47,0,No,2,80,Not Placed
+M,62,62,60,Comm&Mgmt,64,5,Yes,0,63,Placed
+M,67.9,62,67,Sci&Tech,38,0,Yes,1,58.1,Not Placed
+F,48,51,58,Comm&Mgmt,51,0,Yes,2,60,Not Placed
+M,59.96,42.16,61.26,Sci&Tech,52,1,No,2,54.48,Not Placed
+F,63.4,67.2,60,Comm&Mgmt,53,1,No,2,58.06,Not Placed
+M,80,80,72,Comm&Mgmt,65,2,Yes,0,63.79,Placed
+M,73,58,56,Comm&Mgmt,85,2,No,0,84,Placed
+F,52,52,55,Sci&Tech,48,0,No,1,67,Not Placed
+M,73.24,50.83,64.27,Sci&Tech,65,3,Yes,0,64,Placed
+M,63,62,65,Sci&Tech,88,1,No,2,87.5,Not Placed
+F,59,60,56,Comm&Mgmt,56,2,No,0,55,Placed
+F,73,97,79,Comm&Mgmt,90,3,Yes,0,89,Placed
+M,68,56,68,Sci&Tech,74,2,No,0,73,Placed
+F,77.8,64,64.2,Sci&Tech,49,0,No,1,75.5,Not Placed
+M,65,71.5,62.8,Comm&Mgmt,68,4,Yes,0,57,Placed
+M,62,60.33,64.21,Sci&Tech,33,1,No,2,63,Not Placed
+M,52,65,57,Others,27,1,Yes,2,75,Not Placed
+M,65,77,69,Comm&Mgmt,89,2,No,0,60,Placed
+F,56.28,62.83,59.79,Comm&Mgmt,45,0,No,2,60,Not Placed
+F,88,72,78,Others,83,2,No,0,82,Placed
+F,52,64,61,Comm&Mgmt,45,1,No,2,55,Not Placed
+M,78.5,65.5,67,Sci&Tech,99,4,Yes,0,95,Placed
+M,61.8,47,54.38,Comm&Mgmt,49,0,No,2,57,Not Placed
+F,54,77.6,69.2,Comm&Mgmt,43,0,No,1,95.65,Not Placed
+F,64,70.2,61,Comm&Mgmt,23,1,No,1,50,Not Placed
+M,67,61,72,Comm&Mgmt,75,2,No,0,72,Placed
+M,65.2,61.4,64.8,Comm&Mgmt,94,3,Yes,0,93.4,Placed
+F,60,63,56,Others,84,3,Yes,0,80,Placed
+M,52,55,56.3,Comm&Mgmt,16,0,No,3,59,Not Placed
+M,66,76,72,Comm&Mgmt,88,3,Yes,0,84,Placed
+M,72,63,77.5,Sci&Tech,79,4,Yes,0,78,Placed
+F,83.96,53,91,Sci&Tech,60,2,No,0,59.32,Placed
+F,67,70,65,Others,44,1,No,2,88,Not Placed
+M,69,65,57,Comm&Mgmt,75,2,No,0,73,Placed
+M,69,60,65,Comm&Mgmt,89,2,No,0,87.55,Placed
+M,54.2,63,58,Comm&Mgmt,54,1,No,2,79,Not Placed
+M,70,63,66,Sci&Tech,64,2,No,0,61.28,Placed
+M,55.68,61.33,56.87,Comm&Mgmt,84,2,No,0,66,Placed
+F,74,73,73,Comm&Mgmt,81,4,Yes,0,80,Placed
+M,61,62,65,Comm&Mgmt,65,2,No,0,62,Placed
+M,41,42,60,Comm&Mgmt,49,1,No,2,97,Not Placed
+M,83.33,78,61,Comm&Mgmt,89,5,Yes,0,88.56,Placed
+F,43,60,65,Comm&Mgmt,48,0,No,1,92.66,Not Placed
+M,62,72,65,Comm&Mgmt,68,2,No,0,67,Placed
+M,80.6,82,77.6,Comm&Mgmt,93,2,No,0,91,Placed
+M,58,60,72,Sci&Tech,78,2,No,0,74,Placed
+M,67,67,73,Comm&Mgmt,60,3,Yes,0,59,Placed
+F,74,66,58,Comm&Mgmt,73,2,No,0,70,Placed
+M,62,58,53,Comm&Mgmt,39,1,No,3,89,Not Placed
+M,58,61,60,Comm&Mgmt,60,3,No,0,62,Placed
